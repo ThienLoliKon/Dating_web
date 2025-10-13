@@ -7,4 +7,8 @@
     <RootNamespace>Dating_web</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Gui\" />
+  </ItemGroup>
+
 </Project>
