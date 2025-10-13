@@ -8,7 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Gui\" />
+    <Compile Remove="Gui\**" />
+    <Content Remove="Gui\**" />
+    <EmbeddedResource Remove="Gui\**" />
+    <None Remove="Gui\**" />
   </ItemGroup>
 
 </Project>
