@@ -1,4 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Dating_web.Data;
 var builder = WebApplication.CreateBuilder(args);
+// Lấy chuỗi kết nối từ file appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// Đăng ký ApplicationDbContext với dịch vụ của ứng dụng
+// và cấu hình nó để sử dụng SQL Server
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
