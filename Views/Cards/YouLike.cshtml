@@ -1,34 +1,57 @@
 @{
-	ViewData["Title"] = "Cards basic - UI elements";
+  ViewData["Title"] = "You Liked - UI elements";
 }
 
 @section VendorScripts {
-	<script src="~/vendor/libs/masonry/masonry.js"></script>
+<script src="~/vendor/libs/masonry/masonry.js"></script>
 }
 
 @* ************** Content ************** *@
 <!-- Examples -->
 <div class="row mb-12 g-6">
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <img class="card-img-top" src="~/img/elements/2.jpg" alt="Card image cap" />
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the bulk of the card's content.
+        </p>
+        <a href="javascript:void(0)" class="btn btn-outline-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-0">Card title</h5>
+        <h6 class="card-subtitle">Support card subtitle</h6>
+      </div>
+      <img class="img-fluid" src="~/img/elements/13.jpg" alt="Card image cap" />
+      <div class="card-body">
+        <p class="card-text">Bear claw sesame snaps gummies chocolate.</p>
+        <a href="javascript:void(0);" class="card-link">Card link</a>
+        <a href="javascript:void(0);" class="card-link">Another link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-0">Card title</h5>
+        <h6 class="card-subtitle">Support card subtitle</h6>
+        <img class="img-fluid d-flex mx-auto my-4 rounded" src="~/img/elements/4.jpg" alt="Card image cap" />
+        <p class="card-text">Bear claw sesame snaps gummies chocolate.</p>
+        <a href="javascript:void(0);" class="card-link">Card link</a>
+        <a href="javascript:void(0);" class="card-link">Another link</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Examples -->
 
-	<div style="margin-left:auto;margin-right:auto" class="col-md-6 col-lg-4">
-		<div class="card h-100">
-			<div class="card-body">
-				<img src="~/img/avatars/5.png" alt="Avatar" class="rounded-circle">
-				<h5 class="card-title mb-0">User Name</h5>
-				<h6 class="card-subtitle">Support card subtitle</h6>
-			</div>
-			<img class="img-fluid" src="~/img/elements/13.jpg" alt="Card image cap" />
-			<div class="card-body">
-				<a href="javascript:void(0)" class="btn btn-outline-primary">Like</a>
-				<a href="javascript:void(0)" class="btn btn-outline-primary">Dislike</a>
-			</div>
-		</div>
-	</div>
-
-
-	<!-- Examples -->
-	<!-- Content types -->
-@* <h5 class="pb-1 mb-6">Content types</h5>
+<!-- Content types -->
+<h5 class="pb-1 mb-6">Content types</h5>
 
 <div class="row mb-12 g-6">
   <div class="col-md-6 col-lg-4">
@@ -97,8 +120,7 @@
     </div>
   </div>
 </div>
- *@
-@* 
+
 <h6 class="pb-1 mb-6 text-muted">Header and footer</h6>
 <div class="row mb-12 g-6">
   <div class="col-md-6 col-lg-4">
@@ -668,6 +690,5 @@
       </div>
     </div>
   </div>
-</div> *@
-
-	<!--/ Card layout -->
+</div>
+<!--/ Card layout -->
