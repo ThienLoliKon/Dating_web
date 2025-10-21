@@ -235,11 +235,19 @@
 		</li>
 
 		<li class='menu-item@(currentPage == "/Cards/YouLike" ? " active" : "")'>
-			<a asp-controller="Cards" asp-action="Basic" class="menu-link">
+			<a asp-controller="Cards" asp-action="YouLike" class="menu-link">
 				<i class="menu-icon tf-icons ri-heart-2-fill"></i>
 				<div>You Liked</div>
 			</a>
 		</li>
+
+		<li class='menu-item@(currentPage == "/Cards/Chat" ? " active" : "")'>
+			<a asp-controller="Cards" asp-action="Chat" class="menu-link">
+				<i class="menu-icon tf-icons ri-wechat-line"></i>
+				<div>Chat</div>
+			</a>
+		</li>
+
 		<!-- User interface -->
 		@* <li class='menu-item@(currentPage.StartsWith("/Ui") ? " active open" : "")'>
       <a href="javascript:void(0)" class="menu-link menu-toggle">
