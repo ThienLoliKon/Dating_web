@@ -1,9 +1,9 @@
+// File: Models/HoSo.cs
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-  
+
 namespace Dating_web.Models
 {
-
   [Table("ho_so")]
   public class HoSo
   {
@@ -17,6 +17,11 @@ namespace Dating_web.Models
 
     [Column("anh_dai_dien")]
     public string? AnhDaiDien { get; set; }
+
+    // === THÊM CỘT NÀY ===
+    [Column("album_anh")]
+    public string? AlbumAnh { get; set; }
+    // === HẾT ===
 
     [Column("so_thich")]
     public string? SoThich { get; set; }

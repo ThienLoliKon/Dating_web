@@ -22,6 +22,7 @@ CREATE TABLE ho_so (
     ho_so_id CHAR(10) PRIMARY KEY,
     nguoi_dung_id CHAR(10) NOT NULL,
     anh_dai_dien NVARCHAR(200),
+    album_anh NVARCHAR(MAX),
     so_thich NVARCHAR(200),
     mo_ta_ban_than NVARCHAR(500),
     dia_chi NVARCHAR(200),
@@ -56,7 +57,6 @@ CREATE TABLE tin_nhan (
     tin_nhan_id CHAR(10) PRIMARY KEY,
     match_id CHAR(10) NOT NULL,
     nguoi_gui_id CHAR(10) NOT NULL,
-nguoi_nhan_id CHAR(10) NOT NULL,
     noi_dung NVARCHAR(1000),
     thoi_gian DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (match_id) REFERENCES match_user(match_id),
@@ -87,4 +87,6 @@ CREATE TABLE tai_khoan_vip (
     ngay_ket_thuc DATE,
     FOREIGN KEY (nguoi_dung_id) REFERENCES nguoi_dung(nguoi_dung_id)
 )
+GO
+
 GO

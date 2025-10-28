@@ -9,9 +9,13 @@
 
   <ItemGroup>
     <Compile Remove="Gui\**" />
+    <Compile Remove="NewFolder\**" />
     <Content Remove="Gui\**" />
+    <Content Remove="NewFolder\**" />
     <EmbeddedResource Remove="Gui\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
     <None Remove="Gui\**" />
+    <None Remove="NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>

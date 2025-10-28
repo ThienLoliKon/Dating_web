@@ -7,14 +7,14 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // Đăng ký ApplicationDbContext với dịch vụ của ứng dụng
 // và cấu hình nó để sử dụng SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+options.UseSqlServer(connectionString));
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 var app = builder.Build();
+//builder.Services.AddScoped<ApplicationDbContext>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
