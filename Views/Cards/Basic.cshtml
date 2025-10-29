@@ -4,11 +4,18 @@
 
 @section VendorScripts {
 	<script src="~/vendor/libs/masonry/masonry.js"></script>
+<<<<<<< Updated upstream
 }
 
 @* ************** Content ************** *@
 <!-- Examples -->
 <div class="row mb-12 g-6">
+=======
+}  *@
+@* ************** Content ************** *@
+<!-- Examples -->
+ @* <div class="row mb-12 g-6">
+>>>>>>> Stashed changes
 
 	<div style="margin-left:auto;margin-right:auto" class="col-md-6 col-lg-4">
 		<div class="card h-100">
@@ -27,6 +34,72 @@
 	</div>
 
 
+<<<<<<< Updated upstream
+=======
+    <h1>Danh sách tất cả Hồ sơ người dùng</h1>
+    <p>Dữ liệu này được lấy từ database.</p>
+ *@
+
+
+
+
+@* 1. Khai báo Model mà Controller gửi sang (Một danh sách Hồ Sơ) *@
+@model IEnumerable<Dating_web.Models.HoSo>
+@using Dating_web.Data
+@{
+    ViewData["Title"] = "Cards basic - UI elements";
+}
+
+
+@* 2. (Tùy chọn) Thêm script nếu giao diện của bạn cần *@
+@section VendorScripts {
+    <script src="~/vendor/libs/masonry/masonry.js"></script>
+}
+
+@* ************** Nội dung trang ************** *@
+
+<h1>Danh sách tất cả Hồ sơ người dùng</h1>
+<p>Dữ liệu này được lấy từ database.</p>
+
+<div class="row mb-12 g-6">
+
+    @* 3. Bắt đầu vòng lặp foreach, lặp qua từng hồ sơ trong Model *@
+    @foreach (var profile in Model)
+    {
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+
+                    @* 4. Hiển thị dữ liệu động (Dynamic Data) *@
+
+                    <img src="@(profile.AnhDaiDien ?? "~/img/avatars/default.png")"
+                         alt="Avatar" class="rounded-circle" width="50" height="50">
+
+                    <a class="card-title mb-0">@profile.NguoiDung.TenDangNhap</a>
+                    <br />
+
+                    <h6 class="card-subtitle">@profile.MoTaBanThan</h6>
+                </div>
+
+                <img class="img-fluid"
+                     src="@(profile.AlbumAnh ?? "~/img/elements/13.jpg")"
+                     alt="Card image cap" />
+
+                <div class="card-body">
+                    <a href="javascript:void(0)" class="btn btn-outline-primary">Like</a>
+                    <a href="javascript:void(0)" class="btn btn-outline-primary">Dislike</a>
+                </div>
+            </div>
+        </div>
+    }
+    @* 5. Kết thúc vòng lặp foreach *@
+
+</div>
+
+
+
+
+>>>>>>> Stashed changes
 	<!-- Examples -->
 	<!-- Content types -->
 @* <h5 class="pb-1 mb-6">Content types</h5>
