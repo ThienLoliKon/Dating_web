@@ -1,16 +1,13 @@
-@* 
-@using Dating_web.Data
+@* @using Dating_web.Data
 @{
 	ViewData["Title"] = "Cards basic - UI elements";
 }
-
 @section VendorScripts {
 	<script src="~/vendor/libs/masonry/masonry.js"></script>
-} *@
+}  *@
 @* ************** Content ************** *@
 <!-- Examples -->
-@* <div class="row mb-12 g-6">
-
+@*  <div class="row mb-12 g-6">
 	<div style="margin-left:auto;margin-right:auto" class="col-md-6 col-lg-4">
 		<div class="card h-100">
 			<div class="card-body">
@@ -26,15 +23,8 @@
 			</div>
 		</div>
 	</div>
-
-
     <h1>Danh sách tất cả Hồ sơ người dùng</h1>
-    <p>Dữ liệu này được lấy từ database.</p>
-
-
- *@
-
-
+    <p>Dữ liệu này được lấy từ database.</p> *@
 
 
 @* 1. Khai báo Model mà Controller gửi sang (Một danh sách Hồ Sơ) *@
@@ -46,52 +36,49 @@
 
 @* 2. (Tùy chọn) Thêm script nếu giao diện của bạn cần *@
 @section VendorScripts {
-        <script src="~/vendor/libs/masonry/masonry.js"></script>
+    <script src="~/vendor/libs/masonry/masonry.js"></script>
 }
 
 @* ************** Nội dung trang ************** *@
 
-    <h1>Danh sách tất cả Hồ sơ người dùng</h1>
-    <p>Dữ liệu này được lấy từ database.</p>
+<h1>Danh sách tất cả Hồ sơ người dùng</h1>
+<p>Dữ liệu này được lấy từ database.</p>
 
-    <div class="row mb-12 g-6">
+<div class="row mb-12 g-6">
 
-        @* 3. Bắt đầu vòng lặp foreach, lặp qua từng hồ sơ trong Model *@
-        @foreach (var profile in Model)
-        {
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100">
-                    <div class="card-body">
+    @* 3. Bắt đầu vòng lặp foreach, lặp qua từng hồ sơ trong Model *@
+    @foreach (var profile in Model)
+    {
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
 
-                        @* 4. Hiển thị dữ liệu động (Dynamic Data) *@
+                    @* 4. Hiển thị dữ liệu động (Dynamic Data) *@
+                    <img src="~/img/avatars/5.png" alt="Avatar" class="rounded-circle" width="50" height="50">
+                    <a class="card-title mb-0">@profile.HoVaTen</a>
+                    <br />
 
-                        <img src="@(profile.AnhDaiDien ?? "~/img/avatars/default.png")"
-                             alt="Avatar" class="rounded-circle" width="50" height="50">
+                    <h6 class="card-subtitle">@profile.MoTaBanThan</h6>
+                </div>
 
-                        <a class="card-title mb-0">@profile.NguoiDung.TenDangNhap</a>
-                        <br />
+                <img class="img-fluid"
+                     src="@(profile.AlbumAnh ?? "~/img/elements/13.jpg")"
+                     alt="Card image cap" />
 
-                        <h6 class="card-subtitle">@profile.MoTaBanThan</h6>
-                    </div>
-
-                    <img class="img-fluid"
-                         src="@(profile.AlbumAnh ?? "~/img/elements/13.jpg")"
-                         alt="Card image cap" />
-
-                    <div class="card-body">
-                        <a href="javascript:void(0)" class="btn btn-outline-primary">Like</a>
-                        <a href="javascript:void(0)" class="btn btn-outline-primary">Dislike</a>
-                    </div>
+                <div class="card-body">
+                    <a href="javascript:void(0)" class="btn btn-outline-primary">Like</a>
+                    <a href="javascript:void(0)" class="btn btn-outline-primary">Dislike</a>
                 </div>
             </div>
-        }
- @* 5. Kết thúc vòng lặp foreach *@
+        </div>
+    }
+    @* 5. Kết thúc vòng lặp foreach *@
 
-    </div>
+</div>
 
 
-	<!-- Examples -->
-	<!-- Content types -->
+<!-- Examples -->
+<!-- Content types -->
 @* <h5 class="pb-1 mb-6">Content types</h5>
 
 <div class="row mb-12 g-6">
@@ -734,4 +721,4 @@
   </div>
 </div> *@
 
-	<!--/ Card layout -->
+<!--/ Card layout -->

@@ -15,6 +15,9 @@ namespace Dating_web.Models
     [Column("nguoi_dung_id")]
     public string NguoiDungId { get; set; }
 
+    [Column("ho_va_ten")]
+    public string? HoVaTen { get; set; }
+
     [Column("anh_dai_dien")]
     public string? AnhDaiDien { get; set; }
 

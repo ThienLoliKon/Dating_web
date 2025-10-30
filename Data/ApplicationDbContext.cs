@@ -33,17 +33,44 @@ namespace Dating_web.Data
     public DbSet<TinNhan> TinNhans { get; set; }
     public DbSet<BaoCao> BaoCaos { get; set; }
     public DbSet<TaiKhoanVip> TaiKhoanVips { get; set; }
+
     // ... thêm các DbSet cho các bảng còn lại
+    // File: Data/ApplicationDbContext.cs
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
 
-      // Dòng này báo cho EF Core biết 'Thich' có khóa chính kép
+      // BÁO CHO EF CORE BIẾT CÁC CỘT NÀY CÓ GIÁ TRỊ MẶC ĐỊNH
+      modelBuilder.Entity<NguoiDung>()
+          .Property(p => p.NgayTao)
+          .HasDefaultValueSql("GETDATE()"); // <-- Thêm dòng này
+
+      modelBuilder.Entity<NguoiDung>()
+          .Property(p => p.TrangThai)
+          .HasDefaultValue("active"); // <-- Thêm dòng này
+
+      modelBuilder.Entity<Thich>()
+          .Property(p => p.ThoiGian)
+          .HasDefaultValueSql("GETDATE()"); // <-- Thêm dòng này
+
+      modelBuilder.Entity<MatchUser>()
+          .Property(p => p.ThoiGian)
+          .HasDefaultValueSql("GETDATE()"); // <-- Thêm dòng này
+
+      modelBuilder.Entity<TinNhan>()
+          .Property(p => p.ThoiGian)
+          .HasDefaultValueSql("GETDATE()"); // <-- Thêm dòng này
+
+      modelBuilder.Entity<BaoCao>()
+          .Property(p => p.ThoiGian)
+          .HasDefaultValueSql("GETDATE()"); // <-- Thêm dòng này
+
+
+      // --- CẤU HÌNH CŨ CHO BẢNG 'THICH' (Giữ nguyên) ---
+
       modelBuilder.Entity<Thich>()
           .HasKey(t => new { t.NguoiGuiId, t.NguoiNhanId });
 
-      // (Bạn cũng nên thêm các cấu hình khác mà tôi đã gửi trước đó
-      // để tránh lỗi xóa dây chuyền)
       modelBuilder.Entity<Thich>()
           .HasOne(t => t.NguoiNhan)
           .WithMany()
@@ -56,7 +83,31 @@ namespace Dating_web.Data
           .HasForeignKey(t => t.NguoiGuiId)
           .OnDelete(DeleteBehavior.Restrict);
 
-      // ... (các cấu hình cho BaoCao, MatchUser...)
+      // --- CẤU HÌNH CŨ CHO 'BAOCAO' (Giữ nguyên) ---
+      modelBuilder.Entity<BaoCao>()
+          .HasOne(b => b.NguoiBaoCao)
+          .WithMany()
+          .HasForeignKey(b => b.NguoiBaoCaoId)
+          .OnDelete(DeleteBehavior.Restrict);
+
+      modelBuilder.Entity<BaoCao>()
+          .HasOne(b => b.NguoiBiBaoCao)
+          .WithMany()
+          .HasForeignKey(b => b.NguoiBiBaoCaoId)
+          .OnDelete(DeleteBehavior.Restrict);
+
+      // === THÊM CODE MỚI ĐỂ SỬA LỖI CHO 'MATCHUSER' TẠI ĐÂY ===
+      modelBuilder.Entity<MatchUser>()
+          .HasOne(m => m.NguoiA)
+          .WithMany()
+          .HasForeignKey(m => m.NguoiAId)
+          .OnDelete(DeleteBehavior.Restrict); // BÁO EF CORE KHÔNG DÙNG CASCADE
+
+      modelBuilder.Entity<MatchUser>()
+          .HasOne(m => m.NguoiB)
+          .WithMany()
+          .HasForeignKey(m => m.NguoiBId)
+          .OnDelete(DeleteBehavior.Restrict); // BÁO EF CORE KHÔNG DÙNG CASCADE
     }
 
   }
