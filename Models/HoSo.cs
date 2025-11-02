@@ -1,7 +1,7 @@
 // File: Models/HoSo.cs
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Linq;
 namespace Dating_web.Models
 {
   [Table("ho_so")]
@@ -37,5 +37,43 @@ namespace Dating_web.Models
 
     [ForeignKey("NguoiDungId")]
     public virtual NguoiDung NguoiDung { get; set; }
+
+
+    [NotMapped]
+    public List<string> AlbumList
+    {
+      get
+      {
+        if (string.IsNullOrEmpty(this.AlbumAnh))
+        {
+          return new List<string>();
+        }
+
+        // Sửa dòng .Select() ở đây:
+        return this.AlbumAnh.Split(',')
+                           // "s" là tên file (ví dụ: "anh1.jpg")
+                           // Nối chuỗi ngay tại đây
+                           .Select(s => "/img/album/" + s.Trim())
+                           .ToList();
+        // Kết quả: List sẽ chứa "~/img/elements/anh1.jpg", ...
+      }
+    }
+
+    [NotMapped]
+    public string AnhDaiDienUrl
+    {
+      get
+      {
+        // Nếu không có ảnh đại diện, trả về ảnh mặc định
+        if (string.IsNullOrEmpty(this.AnhDaiDien))
+        {
+          return "/img/avatars/default.png";
+        }
+
+        // Tự động nối chuỗi đường dẫn
+        // (Đổi "avatars" thành "elements" nếu bạn muốn)
+        return "/img/avatars/" + this.AnhDaiDien;
+      }
+    }
   }
 }

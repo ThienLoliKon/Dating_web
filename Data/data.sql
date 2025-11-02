@@ -3,24 +3,26 @@ USE hen_ho
 GO
 
 --------------------------------------------------------------------------------
--- 1. Chèn 10 NGƯỜI DÙNG (Đã sửa: Thêm cột 'trang_thai')
+-- 1. Chèn 10 NGƯỜI DÙNG (Đã sửa: Thêm 'trang_thai' và 'ngay_tao')
 --------------------------------------------------------------------------------
-INSERT INTO nguoi_dung (nguoi_dung_id, ten_dang_nhap, mat_khau, email, so_dien_thoai, gioi_tinh, ngay_sinh, trang_thai) VALUES
-('ND001', 'an_nguyen', 'pass123', 'an@example.com', '0901000001', N'Nam', '1995-10-20', 'active'),
-('ND002', 'binh_tran', 'pass123', 'binh@example.com', '0901000002', N'Nam', '1997-05-15', 'active'),
-('ND003', 'chi_le', 'pass123', 'chi@example.com', '0901000003', N'Nữ', '1998-01-30', 'active'),
-('ND004', 'dung_pham', 'pass123', 'dung@example.com', '0901000004', N'Nữ', '1996-07-07', 'active'),
-('ND005', 'em_ho', 'pass123', 'em@example.com', '0901000005', N'Nam', '2000-12-12', 'active'),
-('ND006', 'gia_han', 'pass123', 'giahan@example.com', '0901000006', N'Nữ', '1999-02-14', 'active'),
-('ND007', 'huy_vu', 'pass123', 'huy@example.com', '0901000007', N'Nam', '1994-08-25', 'active'),
-('ND008', 'khanh_ly', 'pass123', 'khanhly@example.com', '0901000008', N'Nữ', '2001-03-10', 'active'),
-('ND009', 'minh_long', 'pass123', 'long@example.com', '0901000009', N'Nam', '1998-11-05', 'active'),
-('ND010', 'nhu_y', 'pass123', 'nhuy@example.com', '0901000010', N'Nữ', '2002-06-22', 'active');
+INSERT INTO nguoi_dung (nguoi_dung_id, ten_dang_nhap, mat_khau, email, so_dien_thoai, gioi_tinh, ngay_sinh, trang_thai, ngay_tao) VALUES
+('ND001', 'an_nguyen', 'pass123', 'an@example.com', '0901000001', N'Nam', '1995-10-20', 'active', GETDATE()),
+('ND002', 'binh_tran', 'pass123', 'binh@example.com', '0901000002', N'Nam', '1997-05-15', 'active', GETDATE()),
+('ND003', 'chi_le', 'pass123', 'chi@example.com', '0901000003', N'Nữ', '1998-01-30', 'active', GETDATE()),
+('ND004', 'dung_pham', 'pass123', 'dung@example.com', '0901000004', N'Nữ', '1996-07-07', 'active', GETDATE()),
+('ND005', 'em_ho', 'pass123', 'em@example.com', '0901000005', N'Nam', '2000-12-12', 'active', GETDATE()),
+('ND006', 'gia_han', 'pass123', 'giahan@example.com', '0901000006', N'Nữ', '1999-02-14', 'active', GETDATE()),
+('ND007', 'huy_vu', 'pass123', 'huy@example.com', '0901000007', N'Nam', '1994-08-25', 'active', GETDATE()),
+('ND008', 'khanh_ly', 'pass123', 'khanhly@example.com', '0901000008', N'Nữ', '2001-03-10', 'active', GETDATE()),
+('ND009', 'minh_long', 'pass123', 'long@example.com', '0901000009', N'Nam', '1998-11-05', 'active', GETDATE()),
+('ND010', 'nhu_y', 'pass123', 'nhuy@example.com', '0901000010', N'Nữ', '2002-06-22', 'active', GETDATE());
 GO
+
+-- (Chạy tiếp các script INSERT cho HỒ SƠ, TÀI KHOẢN VIP, ... như cũ)
+-- (Tôi đã sửa luôn lỗi 'thoi_gian' cho bảng 'bao_cao' và 'thich')
 
 --------------------------------------------------------------------------------
 -- 2. Chèn 10 HỒ SƠ 
--- (Sẽ chạy đúng vì 'nguoi_dung' đã có dữ liệu)
 --------------------------------------------------------------------------------
 INSERT INTO ho_so (ho_so_id, nguoi_dung_id, ho_va_ten, anh_dai_dien, album_anh, so_thich, mo_ta_ban_than, dia_chi) VALUES
 ('HS001', 'ND001', N'Nguyễn Văn An', '/img/avatars/an.jpg', NULL, N'Leo núi, đọc sách', N'Tìm bạn tâm sự.', N'Hà Nội'),
@@ -45,7 +47,7 @@ INSERT INTO tai_khoan_vip (vip_id, nguoi_dung_id, goi_vip, ngay_bat_dau, ngay_ke
 GO
 
 --------------------------------------------------------------------------------
--- 4. Chèn LƯỢT THÍCH 
+-- 4. Chèn LƯỢT THÍCH (Đã sửa: Thêm 'thoi_gian')
 --------------------------------------------------------------------------------
 INSERT INTO thich (nguoi_gui_id, nguoi_nhan_id, thoi_gian) VALUES
 ('ND001', 'ND003', DATEADD(hour, -5, GETDATE())),
@@ -63,7 +65,7 @@ INSERT INTO thich (nguoi_gui_id, nguoi_nhan_id, thoi_gian) VALUES
 GO
 
 --------------------------------------------------------------------------------
--- 5. Chèn MATCH 
+-- 5. Chèn MATCH (Đã sửa: Thêm 'thoi_gian')
 --------------------------------------------------------------------------------
 INSERT INTO match_user (match_id, nguoi_a_id, nguoi_b_id, thoi_gian) VALUES
 ('MAT001', 'ND001', 'ND003', DATEADD(hour, -4, GETDATE())), 
@@ -73,8 +75,7 @@ INSERT INTO match_user (match_id, nguoi_a_id, nguoi_b_id, thoi_gian) VALUES
 GO
 
 --------------------------------------------------------------------------------
--- 6. Chèn TIN NHẮN 
--- (Tôi đã xóa cột 'nguoi_nhan_id' dựa trên sơ đồ ERD bạn gửi)
+-- 6. Chèn TIN NHẮN (Đã sửa: Thêm 'thoi_gian')
 --------------------------------------------------------------------------------
 INSERT INTO tin_nhan (tin_nhan_id, match_id, nguoi_gui_id, noi_dung, thoi_gian) VALUES
 ('MSG001', 'MAT001', 'ND001', N'Chào Chi, mình match rồi!', DATEADD(minute, -239, GETDATE())),
@@ -90,7 +91,7 @@ INSERT INTO tin_nhan (tin_nhan_id, match_id, nguoi_gui_id, noi_dung, thoi_gian) 
 GO
 
 --------------------------------------------------------------------------------
--- 7. Chèn BÁO CÁO (Đã sửa: Thêm cột 'thoi_gian')
+-- 7. Chèn BÁO CÁO (Đã sửa: Thêm 'thoi_gian')
 --------------------------------------------------------------------------------
 INSERT INTO bao_cao (bao_cao_id, nguoi_bao_cao_id, nguoi_bi_bao_cao_id, ly_do, thoi_gian) VALUES
 ('BC001', 'ND005', 'ND007', N'Người này có vẻ dùng ảnh giả mạo.', GETDATE()),
